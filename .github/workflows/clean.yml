@@ -1,0 +1,21 @@
+# Clean old tip releases from the repo by running the clean.sh script. Run it once a day.
+# Ensure that the GitHub Actions workflow has enough permissions to push changes to the repo.
+
+name: "Clean old tip releases"
+on:
+  schedule:
+    - cron: '0 4 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: "Check out repository code"
+        uses: actions/checkout@v4
+      - name: "Run clean.sh"
+        run: bash clean.sh
+      - name: "Push changes"
+        run: |
+          git push --force origin main
