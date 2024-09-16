@@ -20,7 +20,11 @@ jobs:
           apt-get install -qy git gnupg
       - name: "Check out repository code"
         uses: actions/checkout@v4
-      - name: Import GPG key
+      - name: "Create .gnupg"
+        run: |
+          pwd
+          mkdir -p ${HOME}/.gnupg
+      - name: "Import GPG key"
         id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v6
         with:
