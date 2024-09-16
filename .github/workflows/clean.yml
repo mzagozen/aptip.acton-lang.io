@@ -17,6 +17,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: "Configure git"
+        run: |
+          pwd
+          ls -la
+          git config --global --add safe.directory /__w/aptip.acton-lang.io/aptip.acton-lang.io
+          git config user.name "Apt Bot"
+          git config user.email apt@acton-lang.org
       - name: "Run clean.sh"
         run: bash clean.sh
       - name: "Push changes"
